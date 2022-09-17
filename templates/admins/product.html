@@ -1,0 +1,104 @@
+{{% extends 'admins/adminbase.html' %}
+{% block content %}
+{% load static %}
+
+
+
+      <!-- partial -->
+      <div class="main-panel">
+        <div class="content-wrapper">
+    
+          <div class="row">           
+   
+           
+            <div class="col-lg-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">All Products</h4>
+                  <a style="text-decoration: none;" href= "{% url 'add_product' %}"> <i class="fa-solid fa-circle-plus "></i><span> &nbsp&nbspAdd New </a>
+                  <!-- <p class="card-description">
+                    Add class <code>.table-striped</code>
+                  </p> -->
+                  <div class="table-responsive">
+                    <table class="table table-striped">
+                      <thead>
+                        <tr>
+                          <th>
+                            Sl no.
+                          </th>
+                          <th>
+                           Title
+                          </th>
+                          <th>
+                            Category
+                          </th>
+                          <th>
+                            Price
+                          </th>
+                          <th>
+                            Stock
+                          </th>
+                          <th>
+                            Availability
+                          </th>
+                          <th>
+                            Image
+                          </th>
+                          <th>
+                            Actions
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+
+                        {% for x in product %}
+                        <tr>
+                          <td class="py-1">
+                            {{ forloop.counter }}
+                          </td>
+                          <td>
+                            {{ x.product_name }}
+                          </td>
+                          <td>
+                            {{ x.category.category_name }}
+                          
+                          </td>
+                          
+                         
+                          <td>
+                            {{ x.price }}
+                           </td>
+                           <td>
+                            {{ x.stock }}
+                           </td> 
+                           
+                           <td>
+                            {% if x.is_available %}
+                            <i style="color:green" class="fa-solid fa-check"></i>
+                            {% else %}
+                            <i style="color:red" class="fa-solid fa-xmark"></i>
+                            {% endif %}
+                           </td>
+                           <td>
+                            <img src="{{ x.image.url }}">
+                           </td>
+                           <td>
+
+                            <a href= "{% url 'edit_product' x.id %}"><i style="color:green" class="fa-solid fa-pen-to-square"></i> </a>
+                            <a href= "{% url 'delete_product' x.id %}" onclick="return confirm('Are you sure to delete '+' {{x.name}} ?')"><i style="color:red;margin-inline:50px;"  class="fa-solid fa-trash"></i></a>                                                                                                      
+                           
+                           </td>
+                        </tr>
+                       {% endfor %}
+                    
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          
+          </div>
+        </div>
+       
+{% endblock %}

@@ -1,0 +1,74 @@
+
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<section class="vh-100 gradient-custom">
+
+
+        <div class="card mx-auto bg-dark" style="max-width: 480px; margin-top:100px;">
+          <div class="card-body">
+           
+                {% if messages %} 
+                <div class="col-lg-6">
+      
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                       
+                        {% for message in messages %}
+                        {{ message }}
+                        {% endfor %}
+                       
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                </div> {% endif %} 
+               
+      
+                
+               
+                  <form action="" method="POST" class="login100-form validate-form">
+                    {% csrf_token %}
+                    <span class="login100-form-title p-b-43">
+                      <div class="header__logo ">
+                        <h2 class='text-info'>Zapiens Cart</h2>
+                    </div>
+                    <h4 class="text-success">VERIFY YOUR ACCOUNT</h4>
+                      
+                    </span>
+                    <div class="text-danger">{% for message in messages %}
+                      {{ message }}
+                      {% endfor %}</div>
+                                  
+                                 
+                    <div class="form-outline">
+                      
+                      <label class="form-control" >{{form.as_p}}</label>
+                    </div>
+             
+                
+                    <br><br><br>
+                    <div class="container-login100-form-btn">
+                      <button type="submit"  style="background-color:rgb(202, 21, 21) ;" class="btn btn-outline-light btn-lg px-5 b">
+                        Verify
+                      </button>
+                    </div>
+                
+                  </form>
+                 
+                  <div class="login100-more" style="background-;">
+                  </div>
+               
+                </div>   
+           
+          </div> <!-- card-body.// -->
+     <!-- card .// -->
+    
+    
+    </section>
+{% endblock content %}
+
+
+
+

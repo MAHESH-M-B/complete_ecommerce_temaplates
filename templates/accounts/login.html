@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="vh-100 gradient-custom">
+
+    <!-- ============================ COMPONENT LOGIN   ================================= -->
+
+    {% if request.GET.command == 'verification' %}
+    <div class="container mx-auto alert alert-info text-center" role="alert" style="max-width: 1024px; margin-top:100px;">
+      Thank U for registering with us .we have sent a verification email to your email address {{request.GET.email}}
+      <br><br>
+      Already Verified? <a href=" {% url 'login' %} ">LOGIN</a>
+      </div>
+      {% else %}
+
+        <div class="card mx-auto bg-dark" style="max-width: 380px; margin-top:100px;">
+          <div class="card-body">
+            <h2 class="fw-bold mb-2 text-uppercase text-white">Login</h2>
+            <p class="text-white-50 mb-5">Please enter your login and password!</p>
+          {% include 'includes/alerts.html' %}
+          <form action="{% url 'login'%}" method="post">
+            {% csrf_token %}
+            
+              <div class="form-group">
+                 <input type="email" class="form-control" placeholder="Email Address" name="email">
+              </div> <!-- form-group// -->
+              <div class="form-group">
+                <input type="password" class="form-control" placeholder="Password" name="password">
+              </div> <!-- form-group// -->
+              
+              <div class="form-group">
+                  <a href="#" class="float-right">Forgot password?</a> 
+                  <a href="{% url 'otplogin' %}" class="float-left">login with OTP?</a>
+               
+              </div> <!-- form-group form-check .// -->
+              <div class="form-group">
+                <button class="btn btn-outline-light btn-lg px-5 b" type="submit">Login</button>
+              </div> <!-- form-group// -->    
+          </form>
+          </div> <!-- card-body.// -->
+        </div> <!-- card .// -->
+    
+         <p class="text-center mt-4">Don't have account? <a href="{% url 'register' %}">Sign up</a></p>
+         <br><br>
+    <!-- ============================ COMPONENT LOGIN  END.// ================================= -->
+    {% endif %}
+    
+    </section>
+{% endblock content %}
