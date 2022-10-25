@@ -1,3 +1,3 @@
-# complete_ecommerce_temaplate_django2
+# complete_ecommerce_temaplates
 
 templates of alistyle and django
